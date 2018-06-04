@@ -6,22 +6,14 @@
   <div class="collapse navbar-collapse" id="navbarToggle">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/">New Search</a>
+        <a class="nav-link" href="/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/signin">Sign In</a>
+        <a class="nav-link" href="/auth/signin">Sign In</a>
       </li>
       <li class="nav-item">
-				<%# if (session) { %>
-        <a class="nav-link" href="/signup">Sign Up</a>
-				<%# console.log(session)} %>
+        <a class="nav-link" href="/auth/signout">Sign Out</a>
       </li>
-			<li class="nav-item">
-				<a class="nav-link" href="/profile">Profile</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="/user/searches">Your Searches</a>
-			</li>
     </ul>
   </div>
 </nav>
