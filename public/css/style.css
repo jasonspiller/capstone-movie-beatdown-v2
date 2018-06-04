@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Frijole|Limelight|Muli:300,700,900");
+/* variables */
+body {
+  background: #fff;
+  color: #000;
+  font-family: "Muli", sans-serif;
+  font-size: 16px;
+  line-height: 1.4; }
+
+/* logo classes */
+.logo .movie {
+  font-family: "Limelight", sans-serif; }
+
+.logo .beatdown {
+  font-family: 'Frijole', sans-serif; }
+
+a {
+  color: #d54543; }
+
+a:hover, a:visited, a:active {
+  color: #d54543; }
+
+/* override BS rounded corners */
+.btn {
+  border-radius: 0; }
+
+/* make an extra large button */
+.btn-xl {
+  padding: .8rem 2.4rem;
+  font-size: 1.25rem;
+  line-height: 1; }
+
+/* override primary button color */
+.btn-primary {
+  background: #d54543;
+  border-color: #d32828; }
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #d32828;
+  border-color: #d54543; }
+
+/* Small devices (landscape phones, 576px and up) */
+/* Medium devices (tablets, 768px and up) */
+/* Large devices (desktops, 992px and up) */
+/* Extra large devices (large desktops, 1200px and up) */

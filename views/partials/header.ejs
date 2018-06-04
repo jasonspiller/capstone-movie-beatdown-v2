@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand d-block d-sm-none" href="/">Movie Beatdown</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarToggle">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">New Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/signin">Sign In</a>
+      </li>
+      <li class="nav-item">
+				<%# if (session) { %>
+        <a class="nav-link" href="/signup">Sign Up</a>
+				<%# console.log(session)} %>
+      </li>
+			<li class="nav-item">
+				<a class="nav-link" href="/profile">Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/user/searches">Your Searches</a>
+			</li>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron jumbotron-fluid mt-6 d-none d-sm-block">
+  <div class="container">
+    <h1 class="display-4 logo"><a href="/"><span class="movie">Movie</span> <span class="beatdown">Beatdown</span></a></h1>
+    <p class="lead">Let the blood bath begin!</p>
+  </div>
+</div>

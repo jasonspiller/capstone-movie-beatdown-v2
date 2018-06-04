@@ -1,0 +1,85 @@
+
+
+@import url('https://fonts.googleapis.com/css?family=Frijole|Limelight|Muli:300,700,900');
+
+
+/* variables */
+$font-display: 'Limelight', sans-serif;
+$font-display-color: #999;
+$font-body: 'Muli', sans-serif;
+$font-body-color: #000;
+$action: #d54543;
+$action-dark: #d32828;
+
+
+body {
+	background: #fff;
+  color: $font-body-color;
+	font-family: $font-body;
+	font-size: 16px;
+  line-height: 1.4;
+}
+
+/* logo classes */
+.logo .movie {
+	font-family: $font-display;
+}
+
+.logo .beatdown {
+	font-family: 'Frijole', sans-serif;
+}
+
+a {
+	color: $action;
+}
+
+a:hover, a:visited, a:active {
+	color: $action;
+}
+
+/* override BS rounded corners */
+.btn {
+	border-radius: 0;
+}
+
+/* make an extra large button */
+.btn-xl {
+	padding: .8rem 2.4rem;
+	font-size: 1.25rem;
+	line-height: 1;
+}
+
+/* override primary button color */
+.btn-primary {
+	background: $action;
+	border-color: $action-dark;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: $action-dark;
+  border-color: $action;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
