@@ -13,7 +13,7 @@ passport.use(
   }, (accessToken, refreshToken, profile, done) => {
 
     // check to see if user are already in the DB
-    User.findOne({googleId: profile.id}).then((currentUser) => {
+    User.findOne({authId: profile.id}).then((currentUser) => {
       if(currentUser) {
         // user in DB
         console.log('Current user is: ' + currentUser);
@@ -21,7 +21,7 @@ passport.use(
         // passport callback creates new user
         new User({
           username: profile.displayName,
-          googleId: profile.id
+          authId: profile.id
         }).save().then((newUser) => {
           console.log('New user created: ' + newUser);
         });
