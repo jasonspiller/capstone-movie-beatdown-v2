@@ -4,7 +4,7 @@ var sass = require('gulp-sass');
 
 
 // Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
+gulp.task('watch', ['sass'], function() {
 
     // browserSync.init({
     //     server: "./"

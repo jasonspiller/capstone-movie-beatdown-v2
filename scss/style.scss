@@ -37,6 +37,10 @@ a:hover, a:visited, a:active {
 	color: $action;
 }
 
+h1 a:hover {
+  text-decoration: none;
+}
+
 /* override BS rounded corners */
 .btn {
 	border-radius: 0;
