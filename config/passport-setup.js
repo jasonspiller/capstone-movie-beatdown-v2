@@ -11,7 +11,7 @@ passport.serializeUser((user, done) => {
 // find the user based on the id from the cookie
 passport.deserializeUser((id, done) => {
   User.findById(id).then((user) => {
-    done(null, user.id);
+    done(null, user);
   });
 });
 
@@ -30,7 +30,7 @@ passport.use(
       if(currentUser) {
         // user in DB
         console.log('Current user is: ' + currentUser);
-        done(null,currentUser);
+        done(null, currentUser);
       } else {
         // passport callback creates new user
         new User({
