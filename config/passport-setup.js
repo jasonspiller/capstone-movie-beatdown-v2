@@ -12,12 +12,20 @@ passport.use(
     clientSecret: keys.google.clientSecret
   }, (accessToken, refreshToken, profile, done) => {
 
-    // passport callback creates new user
-    new User({
-      username: profile.displayName,
-      googleId: profile.id
-    }).save().then((newUser) => {
-      console.log('New user created: ' + newUser);
-    })
+    // check to see if user are already in the DB
+    User.findOne({googleId: profile.id}).then((currentUser) => {
+      if(currentUser) {
+        // user in DB
+        console.log('Current user is: ' + currentUser);
+      } else {
+        // passport callback creates new user
+        new User({
+          username: profile.displayName,
+          googleId: profile.id
+        }).save().then((newUser) => {
+          console.log('New user created: ' + newUser);
+        });
+      }
+    });
   })
 )
