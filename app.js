@@ -45,7 +45,7 @@ app.use('/profile', profileRoutes);
 
 // initial route
 app.get('/',(req,res) => {
-  res.render('index', {title: 'Home'})
+  res.render('index', {title: 'Home', user: req.user})
 })
 
 
