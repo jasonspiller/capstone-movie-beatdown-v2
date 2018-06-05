@@ -52,7 +52,7 @@ passport.use(
   new facebookStrategy({
 
     // options for the google strategy
-    callbackURL: '/auth/facebook/redirect',
+    callbackURL: 'https://movie-beatdown.herokuapp.com/auth/facebook/redirect',
     clientID: process.env.facebookAppID,
     clientSecret: process.env.facebookAppSecret
   }, (accessToken, refreshToken, profile, done) => {
