@@ -23,4 +23,14 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
   res.redirect('/profile/');
 })
 
+// auth with facebook
+router.get('/facebook', passport.authenticate('facebook', {
+  scope: ['profile']
+}));
+
+// callback route for facebook to redirect
+router.get('/google/redirect', passport.authenticate('facebook'), (req, res) => {
+  res.redirect('/profile/');
+})
+
 module.exports = router;
