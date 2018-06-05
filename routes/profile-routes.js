@@ -11,7 +11,6 @@ const authCheck = (req, res, next) => {
 };
 
 router.get('/', authCheck, (req, res) => {
-  console.log(req.user);
 
   let data = {
     title: req.user.username + '\'s Profile',

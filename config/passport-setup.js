@@ -1,6 +1,6 @@
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20')
-const keys = require('./keys');
+const dotenv 	= require('dotenv').config();
 const User = require('../models/user');
 
 // set the user id in the cookie
@@ -21,8 +21,8 @@ passport.use(
 
     // options for the google strategy
     callbackURL: '/auth/google/redirect',
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret
+    clientID: process.env.googleClientID,
+    clientSecret: process.env.googleClientSecret
   }, (accessToken, refreshToken, profile, done) => {
 
     // check to see if user are already in the DB

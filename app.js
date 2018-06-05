@@ -4,7 +4,7 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+const dotenv 	= require('dotenv').config();
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
@@ -20,7 +20,7 @@ app.use(cookieSession({
   // set age to one day
   maxAge: 24 * 60 * 60 * 1000,
   // encrypt cookie
-  keys: [keys.session.cookieKey]
+  keys: [process.env.cookieKey]
 }));
 
 
@@ -30,7 +30,7 @@ app.use(passport.session());
 
 
 // connect to mongodb
-mongoose.connect(keys.mongodb.dbURI, () => {
+mongoose.connect(process.env.dbURI, () => {
   console.log('Connected to DB.');
 })
 
@@ -49,7 +49,9 @@ app.get('/',(req,res) => {
 })
 
 
-// launch on port 3000
-app.listen(3000, () => {
-  console.log('Hello Dave.');
+//mLab port assignment
+app.set('port', process.env.PORT || 3000)
+
+app.listen(app.get('port'), () => {
+	console.log('Hello Dave.')
 })
