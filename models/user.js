@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  authId: String
+  authId: String,
+  image: String
 });
 
 // mongo will pluralize 'user'

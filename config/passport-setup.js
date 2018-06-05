@@ -35,7 +35,8 @@ passport.use(
         // passport callback creates new user
         new User({
           username: profile.displayName,
-          authId: profile.id
+          authId: profile.id,
+          image: profile._json.image.url
         }).save().then((newUser) => {
           console.log('New user created: ' + newUser);
           done(null, newUser);
