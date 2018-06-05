@@ -1,5 +1,6 @@
 const passport = require('passport');
 const googleStrategy = require('passport-google-oauth20')
+const facebookStrategy = require('passport-facebook')
 const dotenv 	= require('dotenv').config();
 const User = require('../models/user');
 
@@ -24,6 +25,39 @@ passport.use(
     clientID: process.env.googleClientID,
     clientSecret: process.env.googleClientSecret
   }, (accessToken, refreshToken, profile, done) => {
+
+    // check to see if user are already in the DB
+    User.findOne({authId: profile.id}).then((currentUser) => {
+      if(currentUser) {
+        // user in DB
+        console.log('Current user is: ' + currentUser);
+        done(null, currentUser);
+      } else {
+        // passport callback creates new user
+        new User({
+          username: profile.displayName,
+          authId: profile.id,
+          image: profile._json.image.url
+        }).save().then((newUser) => {
+          console.log('New user created: ' + newUser);
+          done(null, newUser);
+        });
+      }
+    });
+  })
+)
+
+
+passport.use(
+  new facebookStrategy({
+
+    // options for the google strategy
+    callbackURL: '/auth/facebook/redirect',
+    clientID: process.env.facebookAppID,
+    clientSecret: process.env.facebookAppSecret
+  }, (accessToken, refreshToken, profile, done) => {
+
+    console.log(profile);
 
     // check to see if user are already in the DB
     User.findOne({authId: profile.id}).then((currentUser) => {
