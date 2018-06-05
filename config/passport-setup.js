@@ -70,7 +70,7 @@ passport.use(
         new User({
           username: profile.displayName,
           authId: profile.id,
-          image: profile._json.image.url
+          image: null
         }).save().then((newUser) => {
           console.log('New user created: ' + newUser);
           done(null, newUser);
