@@ -25,7 +25,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 
 // auth with facebook
 router.get('/facebook', passport.authenticate('facebook', {
-  scope: ['profile']
+  scope: 'read_stream'
 }));
 
 // callback route for facebook to redirect
