@@ -1,31 +1,35 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand d-block d-sm-none" href="/">Movie Beatdown</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarToggle">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-      <% if(!user) { %>
+<header>
+
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand d-block d-md-none" href="/"><span class="logo-movie">Movie</span> <span class="logo-beatdown">Beatdown</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggle">
+      <ul class="navbar-nav text-right ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/auth/signin">Sign In</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
-      <% } else { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/auth/signout">Sign Out</a>
-        </li>
-      <% } %>  
-    </ul>
+        <% if(!user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signin">Sign In</a>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/signout">Sign Out</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+  <div class="jumbotron jumbotron-fluid d-none d-md-block fluid text-center">
+    <div class="container">
+      <h1 class="display-4"><a href="/"><span class="logo-movie">Movie</span> <span class="logo-beatdown">Beatdown</span></a></h1>
+      <p class="lead">Battle it out to determine your Top 100 American movies of all time.</p>
+    </div>
   </div>
-</nav>
-<div class="jumbotron jumbotron-fluid mt-6 d-none d-sm-block">
-  <div class="container">
-    <h1 class="display-4 logo"><a href="/"><span class="movie">Movie</span> <span class="beatdown">Beatdown</span></a></h1>
-    <p class="lead">Let the blood bath begin!</p>
-  </div>
-</div>
+
+</header>

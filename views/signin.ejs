@@ -1,41 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head><% include partials/head %></head>
-
-<body class="pt-5">
-
-	<header><% include partials/header %></header>
+<% include partials/page-top %>
 
 
-	<main>
+  <h2 class="my-4"><%= title %></h2>
 
-		<div class="container">
+  <p><a href="/auth/google">Google+</a></p>
 
-			<div class="row">
-
-        <div class="col">
+  <p><a href="/auth/facebook">Facebook</a></p>
 
 
-          <h2 class="my-4"><%= title %></h2>
-
-          <p><a href="/auth/google">Google+</a></p>
-
-          <p><a href="/auth/facebook">Facebook</a></p>
-
-
-        </div>
-
-			</div>
-
-		</div>
-
-	</main>
-
-
-	<footer><% include partials/footer %></footer>
-
-	<% include partials/scripts %>
-
-</body>
-</html>
+<% include partials/page-bottom %>
