@@ -83,7 +83,7 @@ $(function() {
 			arrMovies.sort(sortMovieArray);
 
 			// start ordered list
-			var strOrderedList = '<div class="col"><h2>Congratulations!</h2><p>Here is your top 10 American films of all time!</p><ol class="sorted-list">';
+			var strOrderedList = '<div class="col-12 col-sm-8 col-md-6 justify-content-center"><h2>Congratulations!</h2><p>Here is your top 10 American films of all time!</p><ol class="sorted-list">';
 
 			for (var i = 0; i < arrMovies.length; i++) {
 				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
@@ -94,7 +94,7 @@ $(function() {
 			}
 
 			// close ordered list and play again button
-			strOrderedList += '</ol><ul class="list-unstyled"><li class="mt-5"><button type="button" class="btn btn-xl btn-info copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li><li class="mt-4"><button type="button" class="btn btn-lg btn-primary play-again">Play Again <i class="fas fa-undo-alt"></i></button></li></ul></div>'
+			strOrderedList += '</ol><ul class="list-unstyled"><li class="mt-5"><button type="button" class="btn btn-xl btn-primary copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li><li class="mt-4"><button type="button" class="btn btn-lg btn-secondary play-again">Play Again <i class="fas fa-undo-alt"></i></button></li></ul></div>'
 
 
 			// output sorted array
