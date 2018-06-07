@@ -45,8 +45,8 @@ $(function() {
 													'</div>';
 			}
 
-			// output progress
-			strOutputMatch += `<div class="row text-center font-weight-bold"><div class="col">Step ${intMatch+1} of ${arrMatches.length}</div></div>`;
+			// output progress and save button
+			strOutputMatch += `<div class="row text-center font-weight-bold"><div class="col-12">Step ${intMatch+1} of ${arrMatches.length}</div><!--<div class="col-12 mt-3"><button type="button" class="btn btn-primary save">Save Game <i class="fas fa-film"></i></button></div>--></div>`;
 
 			// toggle display and output movies to the board
 			$('#gameBoard').slideToggle(500, function() {
@@ -63,7 +63,7 @@ $(function() {
 				// get the title of winning movie
 				var strMovieTitle = $(this).find('h2')[0].innerText;
 
-				// add vote to the appropriate
+				// add vote to the appropriate movie
 				for (var i = 0; i < arrMovies.length; i++) {
 					if (arrMovies[i].Title === strMovieTitle) {
 						arrMovies[i].votes += 1;
@@ -173,7 +173,7 @@ $(function() {
 		for(var i = 0; i < arrMovieIDs.length; i++) {
 
 			// call api
-			$.get(`http://www.omdbapi.com/?i=${arrMovieIDs[i]}&apikey=5e90d428`, function(response) {
+			$.get(`//www.omdbapi.com/?i=${arrMovieIDs[i]}&apikey=5e90d428`, function(response) {
 
 				// add each move to the array
 				arrMovies.push(response);
@@ -208,9 +208,28 @@ $(function() {
 		new ClipboardJS('.copy');
 	}
 
+  // reset all variables and play again
+  // function saveGame() {
+  //
+  //   console.log('Save Game.');
+  //
+  //   $.ajax({
+  //     type: 'post',
+  //     url: '/game/save',
+  //     data: {test: 'test'},
+  //     success: function(res) {
+  //       alert('Game was saved: ' + res.test);
+  //     },
+  //     fail: function(err) {
+  //       alert('Error: ' + err)
+  //     }
+  //   })
+  // }
+
 	// event handlers
 	$('.play').on('click', initGame);
 	$('#gameBoard').on('click', '.play-again', playAgain);
 	$('#gameBoard').on('click', '.copy', copyList);
+	// $('#gameBoard').on('click', '.save', saveGame);
 
 })

@@ -14,15 +14,12 @@ router.use('/profile', profileRoutes);
 // home page
 router.get('/', controller.home);
 
+// save game
+router.post('/game/save', controller.saveGame);
+
 
 // // get all games
 // router.get('/games', controller.getGames);
-//
-// // save game
-// router.post('/games/save', controller.saveGame);
-//
-// // save game
-// router.post('/user/games/save', controller.saveUserGame);
 //
 // // update game page
 // router.post('/games/update', controller.updateGamePage);

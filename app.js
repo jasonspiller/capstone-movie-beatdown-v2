@@ -14,6 +14,9 @@ const app = express();
 // setup view engine
 app.set('view engine', 'ejs');
 
+// add body-parser
+app.use(parser());
+
 
 // create cookie
 app.use(cookieSession({

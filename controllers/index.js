@@ -3,8 +3,24 @@ const request = require('request');
 
 
 // home route
-exports.home = (req,res) => {
+exports.home = (req, res) => {
   res.render('index', {title: 'Home', user: req.user})
+};
+
+
+// save game
+exports.saveGame = (req, res) => {
+
+	console.log(req.body);
+
+	// db.Game.create(req.body, function(err, result) {
+	// 	if(err){
+	// 		console.log("Index Error: " + err);
+	// 		res.sendStatus(500);
+	// 	}
+  //
+	res.json(req.body)
+	// });
 };
 
 
@@ -43,46 +59,6 @@ exports.home = (req,res) => {
 // 		}
 // 		res.render('games', data);
 //   });
-// };
-//
-//
-// // save games
-// exports.saveGame = function(req, res, next) {
-//
-// 	console.log(req.body);
-//
-// 	db.Game.create(req.body, function(err, result) {
-// 		if(err){
-// 			console.log("Index Error: " + err);
-// 			res.sendStatus(500);
-// 		}
-//
-// 		res.redirect('/games')
-// 	});
-// };
-//
-//
-// // save new game
-// exports.saveUserGame = function(req, res, next) {
-//
-// 	db.User.findOne({_id:req.session.userId}, function(err, user) {
-// 		if(err){
-// 			console.log("Index Error: " + err);
-// 			res.sendStatus(500);
-// 		}
-//
-// 		var newGame = new db.Game (req.body)
-//
-// 		console.log(newGame);
-//
-// 		user.games.push(req.body);
-//
-// 		console.log(user.games);
-//
-// 		user.save(function(err, updatedDocument){
-// 			res.redirect('/user/games')
-// 		})
-// 	});
 // };
 //
 //
