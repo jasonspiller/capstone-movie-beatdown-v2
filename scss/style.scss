@@ -97,19 +97,55 @@ h1 a:hover, a.navbar-brand:hover {
 }
 
 /* override primary button color */
-.btn-primary {
+.btn-primary, a.btn-primary {
 	background: $action;
 	border-color: $action-dark;
+  color: #fff;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:focus,
 .btn.btn-primary:active,
 .btn.btn-primary.active {
-  color: #ffffff;
+  color: #fff;
   background-color: $action-dark;
   border-color: $action;
 }
+
+
+/* social logins */
+a.google, a.facebook {
+  width: 10rem;
+}
+
+a.google {
+	background: #dd4b39;
+	border-color: #dd4b39;
+}
+
+a.facebook {
+	background: #3B5998;
+	border-color: #3B5998;
+}
+
+a.google:hover,
+a.google:focus,
+a.google:active,
+a.google.active {
+  color: #fff;
+  background-color: #ce2e1c !important;
+  border-color: #ce2e1c !important;
+}
+
+a.facebook:hover,
+a.facebook:focus,
+a.facebook:active,
+a.facebook.active {
+  color: #fff;
+  background-color: #1d3c7a !important;
+  border-color: #1d3c7a !important;
+}
+
 
 /* header styles */
 .logo-movie {

@@ -83,7 +83,7 @@ $(function() {
 			arrMovies.sort(sortMovieArray);
 
 			// start ordered list
-			var strOrderedList = '<div class="col-12 col-sm-8 col-md-6 justify-content-center"><h2>Congratulations!</h2><p>Here is your top 10 American films of all time!</p><ol class="sorted-list">';
+			var strOrderedList = '<div class="col-10 col-sm-8 col-lg-6 justify-content-center"><h2>Congratulations!</h2><p>Here is your top 10 American films of all time!</p><ol class="sorted-list">';
 
 			for (var i = 0; i < arrMovies.length; i++) {
 				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
@@ -94,7 +94,7 @@ $(function() {
 			}
 
 			// close ordered list and play again button
-			strOrderedList += '</ol><ul class="list-unstyled"><li class="mt-5"><button type="button" class="btn btn-xl btn-primary copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li><li class="mt-4"><button type="button" class="btn btn-lg btn-secondary play-again">Play Again <i class="fas fa-undo-alt"></i></button></li></ul></div>'
+			strOrderedList += '</ol><ul class="list-unstyled"><li class="mt-4"><p>Ready to take your game to the next level?</p><a href="/auth/signin" class="btn btn-lg btn-primary">Lets Get Serious <i class="fas fa-film"></i></a></li><li class="mt-5"><button type="button" class="btn btn-lg btn-secondary copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li></ul></div>'
 
 
 			// output sorted array
@@ -158,14 +158,14 @@ $(function() {
 		// array to hold top 10 movies
 		var arrMovieIDs = [
 			'tt0033467',
-			'tt0068646',
-			'tt0034583',
-			'tt0081398',
-			'tt0045152',
-			'tt0031381',
-			'tt0056172',
-			'tt0108052',
-			'tt0052357',
+			// 'tt0068646',
+			// 'tt0034583',
+			// 'tt0081398',
+			// 'tt0045152',
+			// 'tt0031381',
+			// 'tt0056172',
+			// 'tt0108052',
+			// 'tt0052357',
 			'tt0032138'
 		];
 
@@ -206,6 +206,12 @@ $(function() {
 	// copy list
 	function copyList() {
 		new ClipboardJS('.copy');
+
+    $.message({
+      type:'success',
+      message:'Your list was copied to the clipboard.'
+    });
+
 	}
 
   // reset all variables and play again
