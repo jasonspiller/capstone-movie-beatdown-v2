@@ -1,0 +1,27 @@
+<% include partials/page-top %>
+
+
+  <h2><%= title %></h2>
+
+  <p>Sorry, we couldn't find the page you were looking for. Please try one of the links below.</p>
+
+  <ul class="list-unstyled">
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <% if(!user) { %>
+      <li>
+        <a href="/auth/signin">Sign In</a>
+      </li>
+    <% } else { %>
+      <li>
+        <a href="/profile">Profile</a>
+      </li>
+      <li>
+        <a href="/auth/signout">Sign Out</a>
+      </li>
+    <% } %>
+  </ul>
+
+
+<% include partials/page-bottom %>

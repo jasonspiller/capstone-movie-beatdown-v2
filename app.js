@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const authRoutes = require('./routes/auth-routes');
-const profileRoutes = require('./routes/profile-routes');
+const parser 	= require('body-parser');
+const router = require('./routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
 const dotenv 	= require('dotenv').config();
@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 // create cookie
 app.use(cookieSession({
   // set age to one day
-  maxAge: 24 * 60 * 60 * 1000,
+  maxAge: 7 * 24 * 60 * 60 * 1000,
   // encrypt cookie
   keys: [process.env.cookieKey]
 }));
@@ -40,16 +40,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // set routes
-app.use('/auth', authRoutes);
-app.use('/profile', profileRoutes);
+app.use('/', router);
 
-// initial route
-app.get('/',(req,res) => {
-  res.render('index', {title: 'Home', user: req.user})
-})
-
-
-//mLab port assignment
+// port assignment
 app.set('port', process.env.PORT || 3000)
 
 app.listen(app.get('port'), () => {

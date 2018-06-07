@@ -3,6 +3,7 @@ const passport = require('passport');
 
 // auth sign in
 router.get('/signin', (req, res) => {
+  console.log('Sign In');
   res.render('signin', {title: 'Sign In', user: req.user});
 });
 
