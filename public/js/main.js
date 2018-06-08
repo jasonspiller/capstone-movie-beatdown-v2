@@ -11,7 +11,7 @@ $(function() {
   // save the game
   function saveGame() {
 
-    console.log('Save Game.');
+    console.log('Saved Game.');
 
     $.ajax({
       type: 'post',
@@ -37,10 +37,8 @@ $(function() {
     })
   }
 
-  // save the game
+  // update the game
   function updateGame() {
-
-    console.log('Update Game.');
 
     $.ajax({
       type: 'post',
@@ -51,10 +49,7 @@ $(function() {
         user_id: $('#user').attr('class')
       },
       success: function(res) {
-        $.message({
-          type:'success',
-          message:'Game was updated.'
-        });
+        console.log('Updated Game.');
       },
       fail: function(err) {
         $.message({
@@ -65,6 +60,65 @@ $(function() {
     })
   }
 
+  // delete the game
+  function deleteGame() {
+
+    $.ajax({
+      type: 'post',
+      url: '/game/delete',
+      data: {
+        user_id: $('#user').attr('class')
+      },
+      success: function(res) {
+        console.log('Game Deleted.');
+        window.location.href = '/profile';
+      },
+      fail: function(err) {
+        $.message({
+          type:'error',
+          message:'Game was not deleted.'
+        });
+      }
+    })
+  }
+
+  function displayCompletedList() {
+
+    // no more matches, sort array based on votes
+    arrMovies.sort(sortMovieArray);
+
+    // start ordered list
+    var strOrderedList = '<div class="col-10 col-sm-8 col-lg-6 justify-content-center"><h2>Congratulations!</h2><p>Here is your top 100 American films of all time!</p><ol class="sorted-list">';
+
+    for (var i = 0; i < arrMovies.length; i++) {
+      strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
+                        '" alt="' + arrMovies[i].Title +
+                        '"><h2>' + arrMovies[i].Title +
+                        '</h2><p>' + arrMovies[i].Year +
+                        '</p></div></li>';
+    }
+
+    // end ordered listener
+    strOrderedList += '</ol><ul class="list-unstyled">';
+
+    // test if they're playing the mini or full game
+    if (window.location.pathname != '/game' || window.location.pathname != '/profile') {
+      strOrderedList += '<li class="mt-4"><p>Ready to take your game to the next level?</p><a href="/auth/signin" class="btn btn-lg btn-primary">Lets Get Serious <i class="fas fa-film"></i></a>'
+    } else {
+      strOrderedList += '<li class="mt-4"><button type="button" class="btn btn-lg btn-primary delete">Delete Game <i class="fas fa-trash-alt"></i></button></li>'
+    }
+
+    // add the ability to copy
+    strOrderedList += '<li class="mt-3"><button type="button" class="btn btn-lg btn-secondary copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li></ul></div>'
+
+
+    // output sorted array
+    $('#gameBoard').slideToggle(500, function() {
+      $(this).html(strOrderedList);
+      $(this).slideToggle(500);
+    });
+
+  }
 
 	// sort the array based on votes
 	function sortMovieArray(a, b) {
@@ -131,49 +185,26 @@ $(function() {
 				intMatch++;
 
 				// call the function again and update
-        updateGame();
+
+        // check to see if you're on the game page
+        if (window.location.pathname == '/game') {
+          updateGame();
+        }
 				playGame();
 
 			});
 
 		} else {
 
-			// no more matches, sort array based on votes
-			arrMovies.sort(sortMovieArray);
-
-			// start ordered list
-			var strOrderedList = '<div class="col-10 col-sm-8 col-lg-6 justify-content-center"><h2>Congratulations!</h2><p>Here is your top 100 American films of all time!</p><ol class="sorted-list">';
-
-			for (var i = 0; i < arrMovies.length; i++) {
-				strOrderedList += '<li><div class="movie"><img src="' + arrMovies[i].Poster +
-													'" alt="' + arrMovies[i].Title +
-													'"><h2>' + arrMovies[i].Title +
-													'</h2><p>' + arrMovies[i].Year +
-													'</p></div></li>';
-			}
-
-      // end ordered listener
-      strOrderedList += '</ol><ul class="list-unstyled">';
-
-      // test if they're playing the mini or full game
-      if (window.location.pathname != '/game') {
-        strOrderedList += '<li class="mt-4"><p>Ready to take your game to the next level?</p><a href="/auth/signin" class="btn btn-lg btn-primary">Lets Get Serious <i class="fas fa-film"></i></a></li></ul></div>'
-      }
-
-      // add the ability to copy
-      strOrderedList += '<li class="mt-5"><button type="button" class="btn btn-lg btn-secondary copy" data-clipboard-target="#gameBoard ol">Copy List <i class="fas fa-copy"></i></button></li></ul></div>'
-
-
-			// output sorted array
-			$('#gameBoard').slideToggle(500, function() {
-				$(this).html(strOrderedList);
-				$(this).slideToggle(500);
-			});
+      displayCompletedList();
 
 			// clear all event listeners
 			$('#gameBoard').off('click', '.movie');
 
-      updateGame();
+      // check to see if you're on the game page
+      if (window.location.pathname == '/game') {
+        updateGame();
+      }
 		}
 	}
 
@@ -218,8 +249,10 @@ $(function() {
 
 		arrMatches = shuffle(arrMatches);
 
-
-    saveGame();
+    // check to see if you're on the game page
+    if (window.location.pathname == '/game') {
+      saveGame();
+    }
 		playGame();
 	}
 
@@ -231,9 +264,7 @@ $(function() {
 		var arrMovieIDs = [
 			'tt0033467',
 			'tt0068646',
-			'tt0034583',
-			'tt0081398',
-			'tt0045152'
+			'tt0034583'
 		];
 
 		// make api calls for all movies
@@ -406,14 +437,13 @@ $(function() {
 
   // all code needed for full game
   if (window.location.pathname == '/game') {
-
     console.log('Full Game');
-
     initFullGame();
   }
 
 	// event handlers
 	$('.play').on('click', initMiniGame);
+	$('#gameBoard').on('click', '.delete', deleteGame);
 	$('#gameBoard').on('click', '.copy', copyList);
 
 })

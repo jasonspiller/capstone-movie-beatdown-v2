@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./auth-routes');
-const profileRoutes = require('./profile-routes');
+//const profileRoutes = require('./profile-routes');
 const	controller = require('../controllers');
 
 // set auth and profile routes
 router.use('/auth', authRoutes);
-router.use('/profile', profileRoutes);
+//
 
 
 const authCheck = (req, res, next) => {
@@ -23,26 +23,22 @@ const authCheck = (req, res, next) => {
 // home page
 router.get('/', controller.home);
 
+// profile Page
+router.get('/profile', authCheck, controller.profile)
+
 // game
 router.get('/game', authCheck, controller.game);
 
 // save game
-router.post('/game/save', controller.saveGame);
+router.post('/game/save', authCheck, controller.saveGame);
 
 // update game page
-router.post('/game/update', controller.updateGame);
+router.post('/game/update', authCheck, controller.updateGame);
 
-// // get all games
-// router.get('/games', controller.getGames);
-//
-// // update game call
-// router.post('/game/update/:id', controller.updateGame);
-//
-// // delete game
-// router.post('/games/delete', controller.deleteGame);
-//
-// // game results
-// router.post('/results', controller.results);
+// delete game
+router.post('/game/delete', authCheck, controller.deleteGame);
+
+
 
 
 // catch all 404

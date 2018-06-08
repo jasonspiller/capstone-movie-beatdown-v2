@@ -2,14 +2,48 @@ const db = require('../models');
 const request = require('request');
 
 
-
 // home route
 exports.home = (req, res) => {
   res.render('index', {title: 'Home', user: req.user})
 };
 
 
-// save game
+// profile Page
+exports.profile = (req, res) => {
+
+  console.log(req.user);
+
+  // query the db
+  db.Game.findOne({'user_id': req.user.id}, (err, game) => {
+    if (err) {
+      console.log('DB error: ' + err);
+      res.sendStatus(500);
+    }
+
+    if(game) {
+      console.log(game);
+      let data = {
+        title: req.user.username + '\'s Profile',
+        user: req.user,
+        game: game
+      }
+      res.render('profile', data);
+
+    } else {
+      console.log('no game');
+      let data = {
+        title: req.user.username + '\'s Profile',
+        user: req.user
+      }
+      res.render('profile', data);
+
+    }
+  });
+
+};
+
+
+// game page
 exports.game = (req, res) => {
 
   data = {
@@ -28,7 +62,7 @@ exports.saveGame = (req, res) => {
 
 	db.Game.create(req.body, function(err, result) {
 		if(err){
-			console.log("Index Error: " + err);
+			console.log("Create Error: " + err);
 			res.sendStatus(500);
 		}
 
@@ -38,7 +72,7 @@ exports.saveGame = (req, res) => {
 
 
 // update game
-exports.updateGame = function(req, res) {
+exports.updateGame = (req, res) => {
 
   //console.log(req.body);
 
@@ -57,55 +91,20 @@ exports.updateGame = function(req, res) {
 };
 
 
-// // get all user games
-// exports.userGames = function(req, res, next) {
-//
-// 	// query the db
-// 	db.User.findOne({_id: req.session.userId}, function (err, currentUser) {
-// 		if (err) {
-//       console.log('DB error: ' + err);
-//       res.sendStatus(500);
-//     }
-// 		var data = {
-// 			title: currentUser.name + '\'s Games',
-// 			user: currentUser,
-// 			results: currentUser.games
-// 		}
-//
-// 		res.render('games', data);
-//   });
-// };
-//
-//
-// // get all games
-// exports.getGames = function(req, res, next) {
-//
-// 	// query the db
-//   db.Game.find(function(err, games) {
-//     if (err) {
-//       console.log('DB error: ' + err);
-//       res.sendStatus(500);
-//     }
-// 		var data = {
-// 			title: 'Games',
-// 			results: games
-// 		}
-// 		res.render('games', data);
-//   });
-// };
-//
-//
-// // delete game
-// exports.deleteGame = function(req, res, next) {
-//
-// 	db.User.update({_id:req.session.userId}, { $pull: {games: req.body} }, function(err, user) {
-// 		if(err){
-// 			console.log("Update Error: " + err);
-// 			res.sendStatus(500);
-// 		}
-// 		res.redirect('/user/games')
-// 	})
-// };
+// delete game
+exports.deleteGame = (req, res) => {
+
+  console.log(req.body);
+
+	db.Game.remove({'user_id': req.body.user_id}, function(err, game) {
+		if(err){
+			console.log("Delete Error: " + err);
+			res.sendStatus(500);
+		}
+    console.log('Profile Test');
+		res.sendStatus(200)
+	});
+};
 
 
 // catch all 404
