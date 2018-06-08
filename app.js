@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const parser 	= require('body-parser');
+const bodyParser 	= require('body-parser');
 const router = require('./routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
@@ -14,8 +14,9 @@ const app = express();
 // setup view engine
 app.set('view engine', 'ejs');
 
-// add body-parser
-app.use(parser());
+// add body-parser and set large file limits
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({limit: '5mb'}));
 
 
 // create cookie

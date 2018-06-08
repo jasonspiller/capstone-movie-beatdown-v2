@@ -4,25 +4,36 @@ const authRoutes = require('./auth-routes');
 const profileRoutes = require('./profile-routes');
 const	controller = require('../controllers');
 
-
 // set auth and profile routes
 router.use('/auth', authRoutes);
 router.use('/profile', profileRoutes);
 
 
+const authCheck = (req, res, next) => {
+  if(!req.user) {
+    // if not logged in forward to sign in
+    res.redirect('/auth/signin')
+  } else {
+    // if logged in
+    next();
+  }
+};
+
 
 // home page
 router.get('/', controller.home);
 
+// game
+router.get('/game', authCheck, controller.game);
+
 // save game
 router.post('/game/save', controller.saveGame);
 
+// update game page
+router.post('/game/update', controller.updateGame);
 
 // // get all games
 // router.get('/games', controller.getGames);
-//
-// // update game page
-// router.post('/games/update', controller.updateGamePage);
 //
 // // update game call
 // router.post('/game/update/:id', controller.updateGame);
