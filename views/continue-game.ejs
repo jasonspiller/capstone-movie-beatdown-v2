@@ -1,0 +1,26 @@
+<% include partials/page-top %>
+
+
+  <div class="row justify-content-center text-center mt-4" id="continueGame">
+
+    <%
+      var arrKeys = Object.keys(gameData.matches[gameData.current_match]);
+      for (var i = 0; i < arrKeys.length; i++) {
+    %>
+      <div class="movie col-12 col-md-6" id="<%= arrKeys[i] %>">
+        <img src="<%= gameData.matches[gameData.current_match][arrKeys[i]].Poster %>" alt="<%= gameData.matches[gameData.current_match][arrKeys[i]].Title %>">
+        <h2><%= gameData.matches[gameData.current_match][arrKeys[i]].Title %></h2>
+        <%= gameData.matches[gameData.current_match][arrKeys[i]].Year %>
+      </div>
+    <% } %>
+
+    <div class="row text-center font-weight-bold">
+      <div class="col-12">Step <%= gameData.current_match + 1 %> of <%= gameData.matches.length %></div>
+    </div>
+
+	</div>
+
+
+  <div id="user" class="<%= user.id %>" style="display:none"></div>
+
+<% include partials/page-bottom %>

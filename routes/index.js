@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./auth-routes');
-//const profileRoutes = require('./profile-routes');
 const	controller = require('../controllers');
 
 // set auth and profile routes
 router.use('/auth', authRoutes);
-//
 
 
 const authCheck = (req, res, next) => {
@@ -28,6 +26,9 @@ router.get('/profile', authCheck, controller.profile)
 
 // game
 router.get('/game', authCheck, controller.game);
+
+// continue game
+router.get('/continue-game', authCheck, controller.continueGame);
 
 // save game
 router.post('/game/save', authCheck, controller.saveGame);

@@ -102,7 +102,7 @@ $(function() {
     strOrderedList += '</ol><ul class="list-unstyled">';
 
     // test if they're playing the mini or full game
-    if (window.location.pathname != '/game' || window.location.pathname != '/profile') {
+    if (window.location.pathname != '/game' && window.location.pathname != '/profile') {
       strOrderedList += '<li class="mt-4"><p>Ready to take your game to the next level?</p><a href="/auth/signin" class="btn btn-lg btn-primary">Lets Get Serious <i class="fas fa-film"></i></a>'
     } else {
       strOrderedList += '<li class="mt-4"><button type="button" class="btn btn-lg btn-primary delete">Delete Game <i class="fas fa-trash-alt"></i></button></li>'
@@ -293,6 +293,8 @@ $(function() {
   // initilize the game
   function initFullGame() {
 
+    console.log('Full Game.');
+
     // array to hold top 10 movies
     var arrMovieIDs = [
       // 'tt0033467',
@@ -424,6 +426,14 @@ $(function() {
   }
 
 
+  // continue the game
+  function continueGame() {
+
+    console.log('Do somethings.');
+
+  }
+
+
 	// copy list
 	function copyList() {
 		new ClipboardJS('.copy');
@@ -437,8 +447,18 @@ $(function() {
 
   // all code needed for full game
   if (window.location.pathname == '/game') {
+
     console.log('Full Game');
+
     initFullGame();
+  }
+
+  // all code needed for full game
+  if (window.location.pathname == '/continue-game') {
+
+    console.log('Continue Game');
+
+    continueGame();
   }
 
 	// event handlers

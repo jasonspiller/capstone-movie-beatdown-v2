@@ -46,12 +46,57 @@ exports.profile = (req, res) => {
 // game page
 exports.game = (req, res) => {
 
-  data = {
-    title: 'Battle!',
-    user: req.user
-  }
+  // query the db
+  db.Game.findOne({'user_id': req.user.id}, (err, game) => {
+    if (err) {
+      console.log('DB error: ' + err);
+      res.sendStatus(500);
+    }
 
-  res.render('game', data)
+    if(game) {
+      console.log(game);
+
+      let data = {
+        title: 'Battle!',
+        user: req.user,
+        gameData: game
+      }
+      res.json('continue-game', data);
+
+    } else {
+      console.log('No Game.');
+      let data = {
+        title: 'Battle!',
+        user: req.user
+      }
+      res.render('game', data);
+
+    }
+  });
+};
+
+
+// continue game page
+exports.continueGame = (req, res) => {
+
+  // query the db
+  db.Game.findOne({'user_id': req.user.id}, (err, game) => {
+    if (err) {
+      console.log('DB error: ' + err);
+      res.sendStatus(500);
+    }
+
+    console.log('Continue Game.');
+
+    console.log(game);
+
+    let data = {
+      title: 'Continue Battle!',
+      user: req.user,
+      gameData: game
+    }
+    res.render('continue-game', data);
+  });
 };
 
 
